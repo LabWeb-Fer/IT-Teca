@@ -1,0 +1,17 @@
+{
+  "name": "biblioteca-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistema de gestión de biblioteca",
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "workspaces": [
+    "domain",
+    "apps/backend"
+  ],
+  "scripts": {
+    "test": "echo \"No hay tests en el root. Ejecutá desde cada workspace.\""
+  },
+  "keywords": []
+}
