@@ -1,38 +1,38 @@
-// import express from "express";
-// import { json } from "body-parser";
 
-// const app = express();
-// app.use(json());
+import 'dotenv/config';
+import Fastify from 'fastify';
+import { sequelize } from './src/db.js';
+import { LoanModel } from './models/LoanModel.js';
+import { loanRoutes } from './routes/loanRoutes.js';
 
-// // Rutas
-// app.post("/register", async (req, res) => {
-//   // Usá el caso de uso `RegisterUser`
-// });
+async function buildServer() {
+  const fastify = Fastify();
 
-// app.listen(3000, () => {
-//   console.log("API corriendo en http://localhost:3000");
-// });
+  // Inicializar modelos
+  initLoanModel(sequelize);
 
-
-import express from 'express';
-import { RegisterUser } from '../../domain/src/use-cases/register-user/RegisterUser.js';
-import { InMemoryUserRepository } from './src/repositories/InMemoryUserRepository.ts';
-
-const app = express();
-app.use(express.json());
-
-const userRepo = new InMemoryUserRepository();
-const registerUser = new RegisterUser(userRepo);
-
-app.post("/register", async (req, res) => {
   try {
-    const user = await registerUser.execute(req.body);
-    res.status(201).json(user);
-  } catch (err) {
-    res.status(400).json({ error: (err as Error).message });
+    await sequelize.authenticate();
+    await sequelize.sync(); //  migraciones en producción
+    console.log('Conectado correctamente a la base de datos MySQL');
+  } catch (error) {
+    console.error(' Error al conectar a la base de datos:', error);
+    process.exit(1);
   }
-});
 
-app.listen(3000, () => {
-  console.log("API corriendo en http://localhost:3000");
-});
+  // Registrar rutas
+  await loanRoutes(fastify);
+
+  return fastify;
+}
+
+buildServer()
+  .then(fastify =>
+    fastify.listen({ port: 3000 }).then(() => {
+      console.log('🚀 Server listening on http://localhost:3000');
+    })
+  )
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
