@@ -8,9 +8,18 @@ export class InMemoryBookRepository implements BookRepository {
     return this.books.find(b => b.isbn === isbn) ?? null;
   }
 
+  // async save(book: Book): Promise<void> {
+  //   this.books.push(book);
+  // }
   async save(book: Book): Promise<void> {
-    this.books.push(book);
+  const index = this.books.findIndex(b => b.id === book.id);
+    if (index >= 0) {
+      this.books[index] = book;
+    } else {
+      this.books.push(book);
+    }
   }
+
 
   async findById(id: string): Promise<Book | null> {
     return this.books.find(b => b.id === id) ?? null;

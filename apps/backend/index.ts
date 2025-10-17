@@ -1,15 +1,12 @@
 import 'dotenv/config';
 import Fastify from 'fastify';
 import { sequelize } from './src/db.js';
-import { LoanModel } from './models/LoanModel.js';
-import { loanRoutes } from './routes/loanRoutes.js';
+import { LoanModel } from './src/models/LoanModel.ts';
+import { loanRoutes } from './src/routes/loanRoutes.ts';
 
 async function buildServer() {
   const fastify = Fastify();
-
-  // Inicializar modelos
-  initLoanModel(sequelize);
-
+  
   try {
     await sequelize.authenticate();
     await sequelize.sync(); //  migraciones en producción

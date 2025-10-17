@@ -1,6 +1,6 @@
 // apps/backend/src/repositories/SequelizeLoanRepository.ts
-import { Loan } from '../../../domain/src/entities/Loan';
-import { type LoanRepository } from '../../../domain/src/use-cases/loan-book/LoanRepository';
+import { Loan } from '../../../../domain/src/entities/Loan';
+import { type LoanRepository } from '../../../../domain/src/use-cases/loan-book/LoanRepository';
 import { LoanModel } from '../models/LoanModel';
 
 export class SequelizeLoanRepository implements LoanRepository {

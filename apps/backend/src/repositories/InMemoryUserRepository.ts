@@ -4,8 +4,16 @@ import { type UserRepository } from "domain/src/use-cases/register-user/UserRepo
 export class InMemoryUserRepository implements UserRepository {
   private users: User[] = [];
 
+  // async save(user: User): Promise<void> {
+  //   this.users.push(user);
+  // }
   async save(user: User): Promise<void> {
-    this.users.push(user);
+  const index = this.users.findIndex(u => u.id === user.id);
+    if (index >= 0) {
+      this.users[index] = user;
+    } else {
+      this.users.push(user);
+    }
   }
 
   async findByEmail(email: string): Promise<User | null> {

@@ -1,7 +1,7 @@
 // apps/backend/src/routes/loanRoutes.ts
-import { FastifyInstance } from 'fastify';
+import type { FastifyInstance } from 'fastify';
 import { SequelizeLoanRepository } from '../repositories/SequelizeLoanRepository';
-import { ReturnBook } from '../../../domain/src/use-cases/return-book/ReturnBook';
+import { ReturnBook } from '../../../../domain/src/use-cases/return-book/ReturnBook';
 
 export async function loanRoutes(fastify: FastifyInstance) {
   const loanRepo = new SequelizeLoanRepository();
