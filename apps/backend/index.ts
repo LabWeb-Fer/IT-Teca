@@ -1,4 +1,3 @@
-
 import 'dotenv/config';
 import Fastify from 'fastify';
 import { sequelize } from './src/db.js';

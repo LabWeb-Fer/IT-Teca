@@ -13,5 +13,5 @@ if (!dbUrl) {
 // Crea la instancia de Sequelize
 export const sequelize = new Sequelize(dbUrl, {
   dialect: 'mysql',
-  logging: false, //  true en debugge
+  logging: false, //  true en debugg
 });
