@@ -1,6 +1,6 @@
 // apps/backend/src/repositories/SequelizeBookRepository.ts
-import { Book } from '../../../domain/src/entities/Book';
-import { type BookRepository } from '../../../../domain/src/use-cases/book-management/BookRepository';
+import { Book } from '../../../../domain/src/entities/Book';
+import { type BookRepository } from '../../../../domain/src/use-cases/add-book/BookRepository';
 import { BookModel } from '../models/BookModel';
 
 export class SequelizeBookRepository implements BookRepository {

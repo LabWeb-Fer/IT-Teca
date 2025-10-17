@@ -29,7 +29,7 @@ import { SequelizeLoanRepository } from '../repositories/SequelizeLoanRepository
 import { SequelizeUserRepository } from '../repositories/SequelizeUserRepository';
 import { SequelizeBookRepository } from '../repositories/SequelizeBookRepository';
 
-import { LoanBook } from '../../../domain/src/use-cases/loan-book/LoanBook';
+import { LoanBook } from '../../../../domain/src/use-cases/loan-book/LoanBook';
 import { ReturnBook } from '../../../../domain/src/use-cases/return-book/ReturnBook';
 
 export async function loanRoutes(app: FastifyInstance) {

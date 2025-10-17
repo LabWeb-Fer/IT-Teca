@@ -1,6 +1,6 @@
 // apps/backend/src/repositories/SequelizeUserRepository.ts
-import { User } from '../../../domain/src/entities/User';
-import { type UserRepository } from '../../../../domain/src/use-cases/user-registration/UserRepository';
+import { User } from '../../../../domain/src/entities/User';
+import { type UserRepository } from '../../../../domain/src/use-cases/register-user/UserRepository';
 import { UserModel } from '../models/UserModel';
 
 export class SequelizeUserRepository implements UserRepository {

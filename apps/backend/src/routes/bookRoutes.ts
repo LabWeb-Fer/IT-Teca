@@ -1,6 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 import { AddBook } from '../../../../domain/src/use-cases/add-book/AddBook';
-import { SequelizeBookRepository } from './repositories/SequelizeBookRepository';
+import { SequelizeBookRepository } from '../repositories/SequelizeBookRepository';
 
 export async function bookRoutes(app: FastifyInstance) {
   const bookRepo = new SequelizeBookRepository();
