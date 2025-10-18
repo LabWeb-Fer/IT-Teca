@@ -1,6 +1,6 @@
 # IT-Teca: `biblioteca-system`
 
-![Estructura del proyecto IT-Teca](EstructuraIT-Teca.png)
+![Estructura del proyecto IT-Teca](Estructura-IT-Teca.png)
 
 ## Arquitectura: Clean Architecture
 
