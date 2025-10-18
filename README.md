@@ -1,5 +1,7 @@
 # IT-Teca: `biblioteca-system`
 
+![Estructura del proyecto IT-Teca](EstructuraIT-Teca.png)
+
 ## Arquitectura: Clean Architecture
 
 El proyecto está estructurado siguiendo los principios de **Clean Architecture**, con una clara separación de responsabilidades en capas:
