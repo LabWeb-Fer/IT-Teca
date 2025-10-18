@@ -7,7 +7,11 @@ export class Loan {
     public returnDate: Date | null = null
   ) {}
 
-  return() {
+  // return() {
+  //   this.returnDate = new Date();
+  // }
+
+  markAsReturned() {
     this.returnDate = new Date();
   }
 
@@ -15,3 +19,4 @@ export class Loan {
     return this.returnDate !== null;
   }
 }
+

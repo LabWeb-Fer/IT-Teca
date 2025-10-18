@@ -1,3 +1,6 @@
+
+//domain/src/entities/User.ts
+
 export type UserRole = "admin" | "lector";
 
 export class User {

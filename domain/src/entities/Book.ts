@@ -18,7 +18,10 @@ export class Book {
     this._isAvailable = false;
   }
 
-  return() {
+  // return() {
+  //   this._isAvailable = true;
+  // }
+  markAsReturned() {
     this._isAvailable = true;
   }
 }
