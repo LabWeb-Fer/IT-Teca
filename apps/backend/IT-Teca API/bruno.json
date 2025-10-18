@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "IT-Teca API",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

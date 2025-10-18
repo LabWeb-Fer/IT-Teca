@@ -1,38 +1,43 @@
-// import express from "express";
-// import { json } from "body-parser";
 
-// const app = express();
-// app.use(json());
+//app/backend/indec.ts
 
-// // Rutas
-// app.post("/register", async (req, res) => {
-//   // Usá el caso de uso `RegisterUser`
-// });
+import 'dotenv/config';
+import Fastify from 'fastify';
+import { sequelize } from './src/db.js';
 
-// app.listen(3000, () => {
-//   console.log("API corriendo en http://localhost:3000");
-// });
+import './src/models/LoanModel';
+import './src/models/BookModel';
+import './src/models/UserModel';
 
+import { userRoutes } from './src/routes/userRoutes';
+import { bookRoutes } from './src/routes/bookRoutes';
+import { loanRoutes } from './src/routes/loanRoutes';
 
-import express from 'express';
-import { RegisterUser } from '../../domain/src/use-cases/register-user/RegisterUser.js';
-import { InMemoryUserRepository } from './src/repositories/InMemoryUserRepository.ts';
+async function buildServer() {
+  const app = Fastify();
 
-const app = express();
-app.use(express.json());
-
-const userRepo = new InMemoryUserRepository();
-const registerUser = new RegisterUser(userRepo);
-
-app.post("/register", async (req, res) => {
   try {
-    const user = await registerUser.execute(req.body);
-    res.status(201).json(user);
-  } catch (err) {
-    res.status(400).json({ error: (err as Error).message });
+    await sequelize.authenticate();
+    await sequelize.sync(); // sincroniza modelos con BD
+    console.log('Conectado correctamente a la base de datos MySQL');
+  } catch (error) {
+    console.error('Error al conectar a la base de datos:', error);
+    process.exit(1);
   }
-});
 
-app.listen(3000, () => {
-  console.log("API corriendo en http://localhost:3000");
-});
+  app.register(userRoutes);
+  app.register(bookRoutes);
+  app.register(loanRoutes);
+
+  return app;
+}
+
+buildServer()
+  .then(async app => {
+    await app.listen({ port: Number(process.env.PORT) || 3000 });
+    console.log('🚀 Server listening on http://localhost:3000');
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
