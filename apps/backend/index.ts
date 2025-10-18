@@ -33,8 +33,10 @@
 //     process.exit(1);
 //   });
 
-///////////////////////////////S
- import 'dotenv/config';
+///////////////////////////////
+
+//app/backend/indec.ts
+import 'dotenv/config';
 import Fastify from 'fastify';
 import { sequelize } from './src/db.js';
 

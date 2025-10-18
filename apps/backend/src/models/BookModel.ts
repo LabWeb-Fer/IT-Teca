@@ -1,3 +1,6 @@
+
+//app/backend/src/models/BookModels.ts
+
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../db';
 
@@ -31,6 +34,7 @@ BookModel.init(
     available: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: true,  
     },
   },
   {
