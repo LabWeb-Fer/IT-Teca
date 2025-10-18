@@ -1,0 +1,23 @@
+meta {
+  name: Post Return Book
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/return
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "loanId":"{{loanId}}"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

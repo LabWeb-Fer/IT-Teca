@@ -1,29 +1,6 @@
-// // apps/backend/src/routes/loanRoutes.ts
-// impoSequelizeLoanRepositoryrt type { FastifyInstance } from 'fastify';
-// import {  } from '../repositories/SequelizeLoanRepository';
-// import { ReturnBook } from '../../../../domain/src/use-cases/return-book/ReturnBook';
-
-// export async function loanRoutes(fastify: FastifyInstance) {
-//   const loanRepo = new SequelizeLoanRepository();
-
-//   fastify.post('/return', async (request, reply) => {
-//     const { loanId } = request.body as { loanId: string };
-
-//     try {
-//       const returnBook = new ReturnBook(loanRepo);
-//       await returnBook.execute({ loanId });
-//       reply.code(200).send({ message: 'Book returned successfully' });
-//     } catch (err: any) {
-//       reply.code(400).send({ error: err.message });
-//     }
-//   });
-// }
-
-
-
-
 
 // apps/backend/src/routes/loanRoutes.ts
+
 import type { FastifyInstance } from 'fastify';
 import { SequelizeLoanRepository } from '../repositories/SequelizeLoanRepository';
 import { SequelizeUserRepository } from '../repositories/SequelizeUserRepository';
@@ -56,6 +33,46 @@ export async function loanRoutes(app: FastifyInstance) {
       reply.code(200).send({ message: 'Book returned successfully' });
     } catch (err: any) {
       reply.code(400).send({ error: err.message });
+    }
+  });
+
+  app.get('/loans', async (request, reply) => {
+    try {
+      const loans = await loanRepo.findAll();
+      reply.code(200).send(loans);
+    } catch (err: any) {
+      reply.code(500).send({ error: err.message });
+    }
+  });
+
+  app.get('/loans/:id', async (request, reply) => {
+    const { id } = request.params as { id: string };
+    try {
+      const loan = await loanRepo.findById(id);
+      if (!loan) return reply.code(404).send({ error: 'Loan not found' });
+      reply.code(200).send(loan);
+    } catch (err: any) {
+      reply.code(500).send({ error: err.message });
+    }
+  });
+
+  app.get('/loans/user/:userId', async (request, reply) => {
+    const { userId } = request.params as { userId: string };
+    try {
+      const loans = await loanRepo.findByUserId(userId);
+      reply.code(200).send(loans);
+    } catch (err: any) {
+      reply.code(500).send({ error: err.message });
+    }
+  });
+
+  app.get('/loans/book/:bookId', async (request, reply) => {
+    const { bookId } = request.params as { bookId: string };
+    try {
+      const loans = await loanRepo.findByBookId(bookId);
+      reply.code(200).send(loans);
+    } catch (err: any) {
+      reply.code(500).send({ error: err.message });
     }
   });
 }

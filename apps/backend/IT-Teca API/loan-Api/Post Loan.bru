@@ -1,0 +1,25 @@
+meta {
+  name: Post Loan
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/loans
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "userId": "{{userId}}",
+    "bookId": "{{bookId}}",
+    "loanDate": "{{loanDate}}"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

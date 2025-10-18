@@ -1,4 +1,6 @@
+
 // apps/backend/src/repositories/SequelizeUserRepository.ts
+
 import { User } from '../../../../domain/src/entities/User';
 import { type UserRepository } from '../../../../domain/src/use-cases/register-user/UserRepository';
 import { UserModel } from '../models/UserModel';
@@ -10,8 +12,8 @@ export class SequelizeUserRepository implements UserRepository {
 
     return new User(
       userRecord.id,
-      userRecord.name,
       userRecord.email,
+      userRecord.password,
       userRecord.role
     );
   }
@@ -22,8 +24,8 @@ export class SequelizeUserRepository implements UserRepository {
 
     return new User(
       userRecord.id,
-      userRecord.name,
       userRecord.email,
+      userRecord.password,
       userRecord.role
     );
   }
@@ -31,9 +33,22 @@ export class SequelizeUserRepository implements UserRepository {
   async save(user: User): Promise<void> {
     await UserModel.upsert({
       id: user.id,
-      name: user.name,
       email: user.email,
+      password: user.password,
       role: user.role,
     });
+  }
+
+  async findAll(): Promise<User[]> {
+    const userRecords = await UserModel.findAll();
+    return userRecords.map(
+      (user) =>
+        new User(
+          user.id,
+          user.email,
+          user.password,
+          user.role
+        )
+    );
   }
 }

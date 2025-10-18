@@ -1,4 +1,6 @@
-// apps/backend/src/repositories/SequelizeLoanRepository.ts
+
+//apps/backend/src/repositories/SequelizeBookRepositories.ts
+
 import { Loan } from '../../../../domain/src/entities/Loan';
 import { type LoanRepository } from '../../../../domain/src/use-cases/loan-book/LoanRepository';
 import { LoanModel } from '../models/LoanModel';
@@ -8,7 +10,6 @@ export class SequelizeLoanRepository implements LoanRepository {
     const loanRecord = await LoanModel.findByPk(id);
     if (!loanRecord) return null;
 
-    // Convertir LoanModel a entidad Loan del dominio
     return new Loan(
       loanRecord.id,
       loanRecord.userId,
@@ -19,7 +20,6 @@ export class SequelizeLoanRepository implements LoanRepository {
   }
 
   async save(loan: Loan): Promise<void> {
-    // Guardar o actualizar LoanModel desde entidad Loan
     await LoanModel.upsert({
       id: loan.id,
       userId: loan.userId,
@@ -28,4 +28,48 @@ export class SequelizeLoanRepository implements LoanRepository {
       returnDate: loan.returnDate || null
     });
   }
+
+  // Nuevo: obtener todos los préstamos
+  async findAll(): Promise<Loan[]> {
+    const loanRecords = await LoanModel.findAll();
+    return loanRecords.map(
+      (loanRecord) =>
+        new Loan(
+          loanRecord.id,
+          loanRecord.userId,
+          loanRecord.bookId,
+          loanRecord.loanDate,
+          loanRecord.returnDate || undefined
+        )
+    );
+  }
+
+  async findByUserId(userId: string): Promise<Loan[]> {
+    const loanRecords = await LoanModel.findAll({ where: { userId } });
+    return loanRecords.map(
+      (loanRecord) =>
+        new Loan(
+          loanRecord.id,
+          loanRecord.userId,
+          loanRecord.bookId,
+          loanRecord.loanDate,
+          loanRecord.returnDate || undefined
+        )
+    );
+  }
+
+  async findByBookId(bookId: string): Promise<Loan[]> {
+    const loanRecords = await LoanModel.findAll({ where: { bookId } });
+    return loanRecords.map(
+      (loanRecord) =>
+        new Loan(
+          loanRecord.id,
+          loanRecord.userId,
+          loanRecord.bookId,
+          loanRecord.loanDate,
+          loanRecord.returnDate || undefined
+        )
+    );
+  }
 }
+
