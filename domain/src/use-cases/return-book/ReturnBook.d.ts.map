@@ -1,0 +1,1 @@
+{"version":3,"file":"ReturnBook.d.ts","sourceRoot":"","sources":["ReturnBook.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,KAAK,cAAc,EAAE,MAAM,6BAA6B,CAAC;AAElE,UAAU,iBAAiB;IACzB,MAAM,EAAE,MAAM,CAAC;CAChB;AAED,qBAAa,UAAU;IACT,OAAO,CAAC,QAAQ;gBAAR,QAAQ,EAAE,cAAc;IAEtC,OAAO,CAAC,OAAO,EAAE,iBAAiB,GAAG,OAAO,CAAC,IAAI,CAAC;CAazD"}

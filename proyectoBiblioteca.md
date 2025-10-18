@@ -9,6 +9,7 @@ biblioteca-system/
 ├── package.json
 ├── tsconfig.base.json
 ├── README.md
+├── Collection-Postman/
 ├── domain/
 │   ├── package.json
 │   ├── tsconfig.json
@@ -41,6 +42,7 @@ biblioteca-system/
     │       ├── dist/
     │       |    └── repositories/
     |       |         └── InMemoryUserRepository.js
+    │       ├── IT-Teca Api/
     │       └── node_modules/
     │       ├── src/
     │       |    ├── models/

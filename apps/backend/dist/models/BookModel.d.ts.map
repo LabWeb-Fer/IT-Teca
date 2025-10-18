@@ -1,0 +1,1 @@
+{"version":3,"file":"BookModel.d.ts","sourceRoot":"","sources":["../../src/models/BookModel.ts"],"names":[],"mappings":"AAEA,OAAO,EAAa,KAAK,EAAE,MAAM,WAAW,CAAC;AAG7C,qBAAa,SAAU,SAAQ,KAAK;IACxB,EAAE,EAAE,MAAM,CAAC;IACX,KAAK,EAAE,MAAM,CAAC;IACd,MAAM,EAAE,MAAM,CAAC;IACf,IAAI,EAAE,MAAM,CAAC;IACb,SAAS,EAAE,OAAO,CAAC;CAC9B"}
