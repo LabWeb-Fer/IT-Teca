@@ -1,20 +1,41 @@
-// src/components/BookList.tsx
+// // src/components/BookList.tsx
+// import React from "react";
+// import { useBooks } from "../hooks/useBooks";
+// import { mockBookService } from "../services/bookService";
+// import { BookCard } from "./BookCard";
+
+// export const BookList: React.FC = () => {
+//   const { books, loading, error } = useBooks(mockBookService);
+
+//   if (loading) return <p>Cargando libros...</p>;
+//   if (error) return <p>Error: {error}</p>;
+
+//   return (
+//     <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+//       {books.map((b) => (
+//         <BookCard key={b.id} title={b.title} author={b.author} available={b.available} />
+//       ))}
+//     </div>
+//   );
+// };
+
+
+// // src/components/BookList.tsx
 import React from "react";
-import { useBooks } from "../hooks/useBooks";
-import { mockBookService } from "../services/bookService";
-import { BookCard } from "./BookCard";
+import { useBooks } from "../hooks/useBook";
 
-export const BookList: React.FC = () => {
-  const { books, loading, error } = useBooks(mockBookService);
+export const BookList = () => {
+  const { books, loading } = useBooks();
 
-  if (loading) return <p>Cargando libros...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) return <p>Cargando...</p>;
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+    <ul>
       {books.map((b) => (
-        <BookCard key={b.id} title={b.title} author={b.author} available={b.available} />
+        <li key={b.id}>
+          {b.title} — {b.author}
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
