@@ -3,13 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --ext ts,tsx --fix",
-    "test": "vitest"
-  },
+"scripts": {
+  "dev": "vite",
+  "build": "tsc && vite build",
+  "preview": "vite preview",
+  "test": "vitest",
+  "lint": "eslint src --ext ts,tsx",
+  "lint:fix": "eslint src --ext ts,tsx --fix",
+  "format": "prettier --write ."
+}
   "dependencies": {
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
