@@ -1,3 +1,4 @@
+
 // apps/backend/src/models/UserModel.ts
 
 import { DataTypes, Model } from 'sequelize';

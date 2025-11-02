@@ -1,9 +1,7 @@
-
-//app/backend/indec.ts
-
 import 'dotenv/config';
 import Fastify from 'fastify';
 import { sequelize } from './src/db.js';
+import cors from '@fastify/cors'; 
 
 import './src/models/LoanModel';
 import './src/models/BookModel';
@@ -13,8 +11,31 @@ import { userRoutes } from './src/routes/userRoutes';
 import { bookRoutes } from './src/routes/bookRoutes';
 import { loanRoutes } from './src/routes/loanRoutes';
 
-async function buildServer() {
+
+// async function buildServer() {
+//   const app = Fastify();
+
+//   const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173').split(',');
+  
+//   await app.register(cors, {
+//     origin: allowedOrigins, 
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   });
+
+
+ async function buildServer() {
   const app = Fastify();
+
+  const allowedOrigins = [
+    'http://localhost:5173', 
+    'http://localhost:6006',
+    // Vitest 
+  ];
+  
+  await app.register(cors, {
+    origin: allowedOrigins, 
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  }); 
 
   try {
     await sequelize.authenticate();
@@ -34,8 +55,12 @@ async function buildServer() {
 
 buildServer()
   .then(async app => {
-    await app.listen({ port: Number(process.env.PORT) || 3000 });
-    console.log('🚀 Server listening on http://localhost:3000');
+
+    const port = Number(process.env.PORT) || 3000; 
+
+    await app.listen({ port: port });
+
+    console.log(`Servidor corriendo en puerto en: http://localhost:${port}`);
   })
   .catch(err => {
     console.error(err);

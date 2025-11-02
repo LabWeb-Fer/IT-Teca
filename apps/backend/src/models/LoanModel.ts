@@ -1,3 +1,4 @@
+
 // apps/backend/src/models/LoanModel.ts
 
 import { DataTypes, Model } from 'sequelize';
