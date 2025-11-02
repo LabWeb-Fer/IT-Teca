@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useUser } from '../hooks/useUser';
-import { User } from '../../domain/entities/User';
+import type { User } from '../../domain/entities/User';
 
 export const UserList: React.FC = () => {
   const { users, addUser, loadUsers } = useUser();

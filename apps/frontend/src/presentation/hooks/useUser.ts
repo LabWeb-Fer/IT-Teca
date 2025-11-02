@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { InMemoryUserRepository } from '../../data/repositories/InMemoryUserRepository';
 import { AddUser } from '../../domain/use-cases/registerUser/AddUser';
-import { User } from '../../domain/entities/User';
+import type { User } from '../../domain/entities/User';
 
 const userRepo = new InMemoryUserRepository();
 const addUserUseCase = new AddUser(userRepo);

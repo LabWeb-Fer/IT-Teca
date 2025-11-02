@@ -1,5 +1,8 @@
-import { User } from '../../entities/User';
-import { UserRepository } from './UserRepository';
+
+//frontend/src/domain /use-cases/registerUser/AddUsers.ts
+
+import type { User } from '../../entities/User';
+import type { UserRepository } from './UserRepository';
 
 export class AddUser {
   constructor(private userRepository: UserRepository) {}
