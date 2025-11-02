@@ -1,5 +1,6 @@
 
-// domain/use-cases/registerUser/UserRepository.ts
+// frontend/src/domain/use-cases/registerUser/UserRepository.ts
+
 import type { User } from '../../entities/User';
 
 export interface UserRepository {
