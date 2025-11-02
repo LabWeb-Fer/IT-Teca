@@ -19,7 +19,7 @@ export const UserList: React.FC = () => {
 
   return (
     <div>
-      <h2>Users</h2>
+      <h2>Listado de Usuarios</h2>
       <input
         placeholder="Name"
         value={name}

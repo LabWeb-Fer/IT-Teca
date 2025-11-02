@@ -1,4 +1,5 @@
 
+//domain/use-cases/loanBook/LoanRepository.ts
 
 import type { Loan } from '../../entities/Loan';
 

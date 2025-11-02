@@ -27,10 +27,10 @@ export function LoanList() {
   };
 
   return (
-    <div style={{ padding: '1rem' }}>
-      <h2>📚 Loan List</h2>
+    <div >
+      <h2>Listado de Prestamos</h2>
 
-      <div style={{ marginBottom: '1rem' }}>
+    <div >
         <input
           placeholder="Book ID"
           value={bookId}

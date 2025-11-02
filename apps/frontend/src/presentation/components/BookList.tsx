@@ -22,7 +22,7 @@ export const BookList: React.FC = () => {
 
   return (
     <div>
-      <h2>Books</h2>
+      <h2>Listado de Libros </h2>
       <input
         placeholder="Title"
         value={title}

@@ -15,7 +15,6 @@ export class AddBook {
   }
 
   async listBooks(): Promise<Book[]> {
-    //return this.bookRepository.getBooks();
     return await this.bookRepository.getAll();
 
   }

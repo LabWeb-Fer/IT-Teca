@@ -1,8 +1,8 @@
 
 // apps/frontend/src/data/repositories/factories/userRepositoryFactory.ts
 
-import { InMemoryUserRepository } from '../repositories/InMemoryUserRepository';
-import { ApiUserRepository } from '../repositories/ApiUserRepository';
+import { InMemoryUserRepository } from '../InMemoryUserRepository';
+import { ApiUserRepository } from '../ApiUserRepository';
 
 export const createUserRepository = () => {
   return import.meta.env.VITE_USE_API === 'true'
