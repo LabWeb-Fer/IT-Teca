@@ -1,8 +1,8 @@
 
 //src/domain/use-cases/addBook/AddBook.ts
 
-import { Book } from '../../entities/Book';
-import { BookRepository } from './BookRepository';
+import type { Book } from '../../entities/Book';
+import type { BookRepository } from './BookRepository';
 
 export class AddBook {
   constructor(private bookRepository: BookRepository) {}
@@ -15,6 +15,8 @@ export class AddBook {
   }
 
   async listBooks(): Promise<Book[]> {
-    return this.bookRepository.getBooks();
+    //return this.bookRepository.getBooks();
+    return await this.bookRepository.getAll();
+
   }
 }

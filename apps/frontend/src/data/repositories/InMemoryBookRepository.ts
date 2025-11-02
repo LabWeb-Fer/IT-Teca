@@ -1,5 +1,5 @@
-import { Book } from '../../domain/entities/Book';
-import { BookRepository } from '../../domain/use-cases/addBook/BookRepository';
+import type { Book } from '../../domain/entities/Book';
+import type { BookRepository } from '../../domain/use-cases/addBook/BookRepository';
 
 export class InMemoryBookRepository implements BookRepository {
   private books: Book[] = [];

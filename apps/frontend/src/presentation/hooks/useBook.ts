@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { InMemoryBookRepository } from '../../data/repositories/InMemoryBookRepository';
 import { AddBook } from '../../domain/use-cases/addBook/AddBook';
-import { Book } from '../../domain/entities/Book';
+import type { Book } from '../../domain/entities/Book';
 
 const bookRepo = new InMemoryBookRepository();
 const addBookUseCase = new AddBook(bookRepo);

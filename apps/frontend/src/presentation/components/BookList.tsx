@@ -1,6 +1,9 @@
+
+//apps/frontend/src/presentation/components/BookList.tsx
+
 import React, { useEffect, useState } from 'react';
 import { useBook } from '../hooks/useBook';
-import { Book } from '../../domain/entities/Book';
+import type { Book } from '../../domain/entities/Book';
 
 export const BookList: React.FC = () => {
   const { books, addBook, loadBooks } = useBook();

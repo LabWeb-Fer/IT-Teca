@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import  type { Meta, StoryObj } from '@storybook/react';
 import { LoanList } from './LoanList';
 
 const meta: Meta<typeof LoanList> = {
