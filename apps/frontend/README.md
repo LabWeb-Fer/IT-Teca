@@ -45,10 +45,7 @@ Las pruebas de la aplicación (Frontend con **Vitest/Storybook** y Backend) han 
 
 ##  Configuración del Entorno (`.env`)
 
-Es onesesario configurar las variables de entorno para el **Backend** y el **Frontend**.
-
-###  Backend: `apps/backend/.env`
-
+Es nesesario configurar las variables de entorno para el **Backend** y el **Frontend**.
 Define la conexión a la base de datos, el puerto del servidor y los orígenes CORS permitidos para desarrollo.
 
 ```bash
@@ -68,7 +65,7 @@ NODE_ENV=development
 
 ```bash
 
-# .env (en frontend) true :conexion mysql, false conexion Mocks 
+# .env (en frontend) true :conexion mysql, false: conexion Mocks 
 
 VITE_USE_API=true
 VITE_API_URL=http://localhost:3000
