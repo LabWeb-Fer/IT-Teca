@@ -57,16 +57,7 @@ Este proyecto sigue una **arquitectura Hexagonal (o Limpia)**, utilizando **TDD 
 | **Testing** | Vitest, Storybook | Ejecución de pruebas unitarias, de integración y visuales. |
 
 ---
-## Backend
-El proyecto está estructurado en el backend siguiendo los principios de **Clean Architecture**, con una clara separación de responsabilidades en capas :
-
-| Capa                  | Ubicación                                            | Tecnologías / Descripción                                                  |
-|-----------------------|------------------------------------------------------|-----------------------------------------------------------------------------|
-| **Entidades**         | `domain/src/entities/`                               | Modelos de dominio puros (`User`, `Book`, `Loan`)                          |
-| **Use Cases**         | `domain/src/use-cases/`                              | Lógica de negocio desacoplada por caso (`AddBook`, `LoanBook`, etc.)       |
-| **Repositorios**      | `use-cases/*Repository.ts` + `apps/backend/src/repositories/` | Interfaces en el dominio, implementaciones con Sequelize y memoria         |
-| **Rutas HTTP**        | `apps/backend/src/routes/`                           | Controladores construidos con **Fastify**, invocando casos de uso          |
-| **Infraestructura DB**| `apps/backend/src/models/`                           | Modelos **Sequelize** conectados a **MySQL**                                |
+                           |
 
 ## Frontend
 
