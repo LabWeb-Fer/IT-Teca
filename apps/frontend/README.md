@@ -9,7 +9,7 @@ Este proyecto sigue una **arquitectura Hexagonal (o Limpia)**, utilizando **TDD 
 
 | Componente | Tecnología | Propósito |
 |-------------|-------------|------------|
-| **Backend** | Fastify, TypeScript | Servidor REST de alto rendimiento. |
+| **Backend** | Fastify, TypeScript | Servidor REST . |
 | **Base de Datos** | MySQL | Almacenamiento persistente de datos. |
 | **ORM** | Sequelize | Mapeo Objeto-Relacional y gestión de la BD. |
 | **Frontend** | React, TypeScript, Vite | Interfaz de usuario modular. |
@@ -21,7 +21,7 @@ Este proyecto sigue una **arquitectura Hexagonal (o Limpia)**, utilizando **TDD 
 
 Se implementó el patrón de **Arquitectura Limpia (Clean Architecture)** con los siguientes principios:
 
-- **Dominio (Core):** Contiene Entidades y Casos de Uso (Interactores) independientes de cualquier framework.  
+- **Dominio (Core):** Contiene Entidades y Casos de Uso (Interactores) independientes de framework.  
 - **Inversión de Dependencias (DIP):** El Frontend utiliza un patrón *Factory* para inyectar Repositorios, permitiendo alternar fácilmente la capa de infraestructura.
 
 ---
@@ -39,13 +39,13 @@ La variable de entorno `VITE_USE_API` en el **frontend** actúa como un **interr
 
 ##  Estado de Pruebas
 
-Todas las pruebas de la aplicación (Frontend con **Vitest/Storybook** y Backend) han pasado satisfactoriamente, validando la **lógica de negocio** y la **integración de las diferentes capas**.
+Las pruebas de la aplicación (Frontend con **Vitest/Storybook** y Backend) han pasado satisfactoriamente, validando la **lógica de negocio** y la **integración de las diferentes capas**.
 
 ---
 
 ##  Configuración del Entorno (`.env`)
 
-Es obligatorio configurar las variables de entorno para el **Backend** y el **Frontend**.
+Es onesesario configurar las variables de entorno para el **Backend** y el **Frontend**.
 
 ###  Backend: `apps/backend/.env`
 
@@ -65,4 +65,13 @@ CORS_ORIGINS="http://localhost:5173,http://localhost:6006"
 ### (Opcional)
 NODE_ENV=development
 ```
-### El Frontend utiliza un patrón Factory para inyectar Repositorios. Esto permite alternar fácilmente la capa de infraestructura.Configuración del Entorno (.env)Es nesesario configurar las variables de entorno para el Backend y el Frontend.Backend: apps/backend/.envDefine la conexión a la base de datos, el puerto del servidor y los orígenes de CORS permitidos para desarrollo
+
+```bash
+
+# .env (en frontend) true :conexion mysql, false conexion Mocks 
+
+VITE_USE_API=true
+VITE_API_URL=http://localhost:3000
+
+
+```
