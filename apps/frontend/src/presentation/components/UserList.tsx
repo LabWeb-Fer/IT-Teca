@@ -30,7 +30,7 @@ export const UserList: React.FC = () => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <button onClick={handleAddUser}>Add User</button>
+      <button onClick={handleAddUser}> ➕ Add User</button>
 
       <ul>
         {users.map((user: User) => (

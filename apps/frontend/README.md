@@ -1,73 +1,68 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#  Arquitectura y Desarrollo
 
-Currently, two official plugins are available:
+Este proyecto sigue una **arquitectura Hexagonal (o Limpia)**, utilizando **TDD (Desarrollo Guiado por Pruebas)** en ambos extremos para asegurar la **robustez** y el **mantenimiento**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+##  Stack Tecnológico
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Componente | Tecnología | Propósito |
+|-------------|-------------|------------|
+| **Backend** | Fastify, TypeScript | Servidor REST de alto rendimiento. |
+| **Base de Datos** | MySQL | Almacenamiento persistente de datos. |
+| **ORM** | Sequelize | Mapeo Objeto-Relacional y gestión de la BD. |
+| **Frontend** | React, TypeScript, Vite | Interfaz de usuario modular. |
+| **Testing** | Vitest, Storybook | Ejecución de pruebas unitarias, de integración y visuales. |
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+##  Enfoque TDD y Arquitectura Limpia
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Se implementó el patrón de **Arquitectura Limpia (Clean Architecture)** con los siguientes principios:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Dominio (Core):** Contiene Entidades y Casos de Uso (Interactores) independientes de cualquier framework.  
+- **Inversión de Dependencias (DIP):** El Frontend utiliza un patrón *Factory* para inyectar Repositorios, permitiendo alternar fácilmente la capa de infraestructura.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+##  Control de Entorno (`VITE_USE_API`)
+
+La variable de entorno `VITE_USE_API` en el **frontend** actúa como un **interruptor global** para la capa de datos:
+
+| `VITE_USE_API` | Modo | Repositorio Utilizado | Objetivo |
+|----------------|------|------------------------|-----------|
+| `true` | API Real (Producción/Desarrollo) | `ApiUserRepository`, `ApiBookRepository`, etc. | Conecta a **MySQL** a través del **Backend de Fastify**. |
+| `false` | Mock en Memoria (Testing/Storybook) | `InMemoryUserRepository`, `InMemoryBookRepository`, etc. | Usa datos volátiles en memoria, funciona sin el Backend. |
+
+---
+
+##  Estado de Pruebas
+
+Todas las pruebas de la aplicación (Frontend con **Vitest/Storybook** y Backend) han pasado satisfactoriamente, validando la **lógica de negocio** y la **integración de las diferentes capas**.
+
+---
+
+##  Configuración del Entorno (`.env`)
+
+Es obligatorio configurar las variables de entorno para el **Backend** y el **Frontend**.
+
+###  Backend: `apps/backend/.env`
+
+Define la conexión a la base de datos, el puerto del servidor y los orígenes CORS permitidos para desarrollo.
+
+```bash
+### .env (en backend)
+
+DB_URL=mysql://[USUARIO]:[CLAVE]@localhost:3306/It-Teca_base
+
+### Puerto donde corre el backend
+PORT=3000
+
+### Orígenes CORS permitidos (Frontend y Storybook)
+CORS_ORIGINS="http://localhost:5173,http://localhost:6006"
+
+### (Opcional)
+NODE_ENV=development
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### El Frontend utiliza un patrón Factory para inyectar Repositorios. Esto permite alternar fácilmente la capa de infraestructura.Configuración del Entorno (.env)Es nesesario configurar las variables de entorno para el Backend y el Frontend.Backend: apps/backend/.envDefine la conexión a la base de datos, el puerto del servidor y los orígenes de CORS permitidos para desarrollo

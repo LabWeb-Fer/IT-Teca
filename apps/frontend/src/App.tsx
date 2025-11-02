@@ -8,7 +8,7 @@ import './App.css'
 function App() {
   return (
     <div>
-      <h1>🏗️ Biblioteca - Demo IT-Teca</h1>
+      <h1>📖 Biblioteca - Demo IT-Teca</h1>
       <BookList />
       <UserList />
       <LoanList />

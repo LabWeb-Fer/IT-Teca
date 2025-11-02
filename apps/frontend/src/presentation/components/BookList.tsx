@@ -33,7 +33,7 @@ export const BookList: React.FC = () => {
         value={author}
         onChange={(e) => setAuthor(e.target.value)}
       />
-      <button onClick={handleAddBook}>Add Book</button>
+      <button onClick={handleAddBook}> ➕ Add Book</button>
 
       <ul>
         {books.map((book: Book) => (

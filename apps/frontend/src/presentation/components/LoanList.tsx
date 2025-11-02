@@ -41,7 +41,7 @@ export function LoanList() {
           value={userId}
           onChange={(e) => setUserId(e.target.value)}
         />
-        <button onClick={handleAdd}>➕ Add Loan</button>
+        <button onClick={handleAdd}> ➕ Add Loan</button>
       </div>
 
       {loans.length === 0 ? (

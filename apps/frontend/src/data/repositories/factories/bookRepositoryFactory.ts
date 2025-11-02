@@ -1,3 +1,6 @@
+
+// apps/frontend/src/data/repositories/factories/BookRepositoryFactories.ts
+
 import { InMemoryBookRepository } from '../InMemoryBookRepository';
 import { ApiBookRepository } from '../ApiBookRepository';
 
