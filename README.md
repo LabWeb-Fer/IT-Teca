@@ -92,27 +92,4 @@ Las pruebas de la aplicación (Frontend con **Vitest/Storybook** y Backend) han 
 Es nesesario configurar las variables de entorno para el **Backend** y el **Frontend**.
 Define la conexión a la base de datos, el puerto del servidor y los orígenes CORS permitidos para desarrollo.
 
-```bash
-### .env (en backend)
-
-DB_URL=mysql://[USUARIO]:[CLAVE]@localhost:3306/It-Teca_base
-
-### Puerto donde corre el backend
-PORT=3000
-
-### Orígenes CORS permitidos (Frontend y Storybook)
-CORS_ORIGINS="http://localhost:5173,http://localhost:6006"
-
-### (Opcional)
-NODE_ENV=development
-```
-
-```bash
-
-# .env (en frontend) true :conexion mysql, false: conexion Mocks 
-
-VITE_USE_API=true
-VITE_API_URL=http://localhost:3000
-
-
 ```
