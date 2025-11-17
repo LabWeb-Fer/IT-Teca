@@ -1,0 +1,68 @@
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: itteca-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: It-Teca_base
+      MYSQL_USER: itteca_user
+      MYSQL_PASSWORD: ItTeca&Room26
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - itteca-net
+
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+    container_name: itteca-backend
+    restart: always
+    env_file:
+      - ./apps/backend/.env
+    depends_on:
+      - mysql
+    
+    volumes:
+      - ./apps/backend:/app:delegated
+      - /app/node_modules
+      - ./domain:/domain
+
+    environment:
+      - DOCKER_ENV=true         # Establecer que estamos en Docker
+      - DB_HOST_DOCKER=itteca-mysql
+      - DB_PORT_DOCKER=3306     # Puerto de MySQL dentro de Docker
+      - DB_USER=itteca_user
+      - DB_PASSWORD=ItTeca&Room26
+      - DB_NAME=It-Teca_base
+
+    ports:
+      - "3000:3000"
+    networks:
+      - itteca-net
+
+  frontend:
+    build:
+      context: .           # raíz del monorepo
+      dockerfile: apps/frontend/Dockerfile
+    container_name: itteca-frontend
+    restart: always
+    env_file:
+      - ./apps/frontend/.env   # <-- aquí se leen VITE_USE_API y VITE_API_URL
+    ports:
+      - "5173:80"
+    networks:
+      - itteca-net
+
+volumes:
+  mysql_data:
+
+networks:
+  itteca-net:
+
+
+

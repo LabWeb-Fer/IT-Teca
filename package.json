@@ -8,10 +8,14 @@
   "type": "module",
   "workspaces": [
     "domain",
-    "apps/backend"
+    "apps/"
   ],
   "scripts": {
     "test": "echo \"No hay tests en el root. Ejecutá desde cada workspace.\""
   },
-  "keywords": []
+  "keywords": [],
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.0.10",
+    "vitest": "^4.0.10"
+  }
 }

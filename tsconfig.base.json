@@ -1,3 +1,4 @@
+//biblioteca-system/tsconfig.base.json
 {
   "compilerOptions": {
     "target": "ESNext",
