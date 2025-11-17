@@ -57,7 +57,7 @@ Este proyecto sigue una **arquitectura Hexagonal (o Limpia)**, utilizando **TDD 
 | **Testing** | Vitest, Storybook | Ejecución de pruebas unitarias, de integración y visuales. |
 
 ---
-                           |
+                         
 
 ## Frontend
 
