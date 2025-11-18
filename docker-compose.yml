@@ -33,9 +33,9 @@ services:
       - ./domain:/domain
 
     environment:
-      - DOCKER_ENV=true         # Establecer que estamos en Docker
+      - DOCKER_ENV=true       
       - DB_HOST_DOCKER=itteca-mysql
-      - DB_PORT_DOCKER=3306     # Puerto de MySQL dentro de Docker
+      - DB_PORT_DOCKER=3306    
       - DB_USER=itteca_user
       - DB_PASSWORD=ItTeca&Room26
       - DB_NAME=It-Teca_base
@@ -47,12 +47,12 @@ services:
 
   frontend:
     build:
-      context: .           # raíz del monorepo
+      context: .        
       dockerfile: apps/frontend/Dockerfile
     container_name: itteca-frontend
     restart: always
     env_file:
-      - ./apps/frontend/.env   # <-- aquí se leen VITE_USE_API y VITE_API_URL
+      - ./apps/frontend/.env  
     ports:
       - "5173:80"
     networks:
