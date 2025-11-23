@@ -17,5 +17,8 @@
   "devDependencies": {
     "@vitest/coverage-v8": "^4.0.10",
     "vitest": "^4.0.10"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.1.0"
   }
 }
