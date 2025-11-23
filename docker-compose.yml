@@ -1,4 +1,6 @@
 
+#  IT-Teca/docker-compose.yml
+
 services:
   mysql:
     image: mysql:8
@@ -15,6 +17,11 @@ services:
       - mysql_data:/var/lib/mysql
     networks:
       - itteca-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "itteca_user", "-p${MYSQL_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   backend:
     build:
@@ -25,21 +32,19 @@ services:
     env_file:
       - ./apps/backend/.env
     depends_on:
-      - mysql
-    
+      mysql:
+        condition: service_healthy
     volumes:
       - ./apps/backend:/app:delegated
       - /app/node_modules
       - ./domain:/domain
-
     environment:
-      - DOCKER_ENV=true       
+      - DOCKER_ENV=true
       - DB_HOST_DOCKER=itteca-mysql
-      - DB_PORT_DOCKER=3306    
+      - DB_PORT_DOCKER=3306
       - DB_USER=itteca_user
       - DB_PASSWORD=ItTeca&Room26
       - DB_NAME=It-Teca_base
-
     ports:
       - "3000:3000"
     networks:
@@ -47,12 +52,16 @@ services:
 
   frontend:
     build:
-      context: .        
+      context: .
       dockerfile: apps/frontend/Dockerfile
+      args:
+        VITE_API_URL: http://itteca-backend:3000  
     container_name: itteca-frontend
     restart: always
     env_file:
-      - ./apps/frontend/.env  
+      - ./apps/frontend/.env
+    volumes:
+      - ./apps/frontend:/app
     ports:
       - "5173:80"
     networks:
@@ -63,6 +72,3 @@ volumes:
 
 networks:
   itteca-net:
-
-
-

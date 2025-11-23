@@ -93,6 +93,7 @@ Es nesesario configurar las variables de entorno para el **Backend** y el **Fron
 Define la conexión a la base de datos, el puerto del servidor y los orígenes CORS permitidos para desarrollo.
 
 
+
 ### Características principales de la construcción:
 
 MySQL:
