@@ -93,3 +93,35 @@ Es nesesario configurar las variables de entorno para el **Backend** y el **Fron
 Define la conexión a la base de datos, el puerto del servidor y los orígenes CORS permitidos para desarrollo.
 
 ```
+
+### Características principales de la construcción:
+
+MySQL:
+Base de datos MySQL 8.
+Configuración de variables de entorno para acceso con un usuario y contraseña personalizados.
+Volúmenes persistentes para los datos.
+
+### Backend (Node.js):
+
+Construido a partir de un Dockerfile personalizado.
+Conexión a la base de datos configurada mediante variables de entorno.
+Volúmenes montados para el código fuente y node_modules.
+
+### Frontend (React/Vite):
+
+Utiliza una construcción de multi-etapa para separar el build y la ejecución.
+La aplicación está servida por Nginx para una mejor eficiencia en producción.
+
+### Requisitos previos:
+
+Docker y Docker Compose deben estar instalados.
+
+**Pasos para ejecutar:**
+
+Clonar el repositorio y navega a la raíz del proyecto.
+
+Ejecutar
+
+```bash
+    docker-compose up --build 
+```
